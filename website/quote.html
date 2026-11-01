@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Get a Quote — SPAND Studio · Aerial Video &amp; Photography</title>
+<meta name="description" content="Tell us about your project and get a real estimate from SPAND Studio within one business day. No account required." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* Standalone, public quote page. Reuses the portal stylesheet (styles.css)
+     so the brief flow looks exactly as designed, but lives outside the
+     auth-walled portal. A visitor is signed in anonymously on load so the
+     Firestore write succeeds without them creating an account. */
+  .pq-header {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 18px; padding: 14px clamp(18px, 4vw, 40px);
+    background: var(--bg-elev); border-bottom: 1px solid var(--accent-soft);
+    backdrop-filter: saturate(1.1);
+  }
+  .pq-header .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--fg); }
+  .pq-header .brand img { height: 38px; width: auto; display: block; }
+  .pq-header .brand-name { font-weight: 800; letter-spacing: .02em; line-height: 1; }
+  .pq-header .brand-sub { display: block; font-size: 11px; color: var(--fg-mute); margin-top: 3px; letter-spacing: .04em; }
+  .pq-header .pq-right { display: flex; align-items: center; gap: 18px; font-size: 13px; }
+  .pq-header .pq-right a { color: var(--fg-dim); text-decoration: none; }
+  .pq-header .pq-right a:hover { color: var(--accent); }
+  .pq-wrap { max-width: 1100px; margin: 0 auto; padding: clamp(28px, 5vw, 56px) clamp(18px, 4vw, 40px) 80px; }
+  .pq-intro { margin-bottom: 26px; }
+  .pq-intro .eyebrow { color: var(--accent); font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+  .pq-intro h1 { font-size: clamp(30px, 4.6vw, 50px); line-height: 1.04; margin: 12px 0 10px; }
+  .pq-intro p { color: var(--fg-dim); max-width: 60ch; margin: 0; }
+  .pq-foot { text-align: center; color: var(--fg-mute); font-size: 12px; padding: 28px 16px 40px; }
+  .pq-foot a { color: var(--fg-dim); text-decoration: none; }
+</style>
+<link rel="canonical" href="https://spandstudio.com/quote.html" />
+<link rel="icon" type="image/svg+xml" sizes="32x32" href="assets/image-placeholder.svg" />
+<link rel="icon" type="image/svg+xml" sizes="192x192" href="assets/image-placeholder.svg" />
+<link rel="apple-touch-icon" href="assets/image-placeholder.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SPAND Studio" />
+<meta property="og:title" content="Get a Quote — SPAND Studio" />
+<meta property="og:description" content="Tell us about your project in a couple of minutes — no account needed — and we'll reply with a real estimate within one business day." />
+<meta property="og:url" content="https://spandstudio.com/quote.html" />
+<meta property="og:image" content="https://spandstudio.com/assets/media/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Get a Quote — SPAND Studio" />
+<meta name="twitter:description" content="Get a free aerial video or photography estimate — no account needed." />
+<meta name="twitter:image" content="https://spandstudio.com/assets/media/og-image.jpg" />
+</head>
+<body>
+
+<header class="pq-header">
+  <a class="brand" href="landing.html">
+    <img src="assets/image-placeholder.svg" alt="SPAND Studio" />
+    <span>
+      <span class="brand-name">SPAND STUDIO</span>
+      <span class="brand-sub">+ Aerial Video &amp; Photography</span>
+    </span>
+  </a>
+  <div class="pq-right">
+    <a href="services.html">Services</a>
+    <a href="landing.html">Back to site</a>
+    <a href="tel:8102630979">810 · 263 · 0979</a>
+  </div>
+</header>
+
+<div class="pq-wrap">
+  <div class="pq-intro">
+    <span class="eyebrow">Get a quote · no account needed</span>
+    <h1>Tell us about your project.</h1>
+    <p>Pick the service that fits, answer a few quick questions, and we'll reply with a real estimate within one business day. Takes a couple of minutes.</p>
+  </div>
+  <div id="quote-root"></div>
+</div>
+
+<div class="pq-foot">
+  Prefer to talk it through? Email <a href="mailto:hello@spandstudio.com">hello@spandstudio.com</a> or call <a href="tel:8102630979">810 · 263 · 0979</a>.
+  <br />By submitting a brief, you agree to our <a href="privacy.html">Privacy Policy</a>.
+</div>
+
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+  import {
+    getAuth, setPersistence, browserLocalPersistence,
+    signInAnonymously, onAuthStateChanged,
+  } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+  import {
+    getFirestore, collection, addDoc, serverTimestamp,
+  } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA_YwSXyFfbNYyu51S2Wc_kxmHiWNIoYyQ",
+    authDomain: "spand-studio.firebaseapp.com",
+    projectId: "spand-studio",
+    storageBucket: "spand-studio.firebasestorage.app",
+    messagingSenderId: "960935312194",
+    appId: "1:960935312194:web:46f619423ba83888a0a6db",
+    measurementId: "G-RCL1NSKH0P",
+  };
+
+  let resolveReady;
+  window.firebaseReady = new Promise((r) => { resolveReady = r; });
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  await setPersistence(auth, browserLocalPersistence);
+  const db = getFirestore(app);
+
+  // Only what the quote module touches.
+  window.fb = {
+    auth, db,
+    collection, addDoc, serverTimestamp,
+  };
+
+  try {
+    if (!auth.currentUser) await signInAnonymously(auth);
+  } catch (e) {
+    console.warn("Anonymous sign-in failed — enable the Anonymous provider in Firebase to accept quote submissions.", e);
+  }
+
+  resolveReady(window.fb);
+</script>
+
+<script type="text/babel" src="icons.jsx"></script>
+<script type="text/babel" src="quote.jsx"></script>
+<script type="text/babel">
+
+  window.firebaseReady.then(() => {
+    ReactDOM.createRoot(document.getElementById("quote-root")).render(<QuoteModule />);
+  });
+</script>
+</body>
+</html>
