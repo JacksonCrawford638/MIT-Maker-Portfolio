@@ -1,3 +1,3 @@
 # Website
 
-**AI disclaimer:** The bulk of this website was made with Claude Code. I chose to build it with AI so it would look as professional as possible without needing to spend a large amount of time on the front end.
+**AI disclaimer:** The bulk of this website was made with Claude Code, so it would look professional without much time spent on the front end. Its main purpose was utility, not creative expression.
