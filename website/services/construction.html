@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Construction Documentation — SPAND Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800&family=Archivo+Narrow:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../site.css" />
+<meta name="description" content="Construction progress documentation and marketing media by SPAND Studio — aerial photos, video, and site scans on the schedule you set." />
+<link rel="canonical" href="https://spandstudio.com/services/construction.html" />
+<link rel="icon" type="image/svg+xml" sizes="32x32" href="../assets/image-placeholder.svg" />
+<link rel="icon" type="image/svg+xml" sizes="192x192" href="../assets/image-placeholder.svg" />
+<link rel="apple-touch-icon" href="../assets/image-placeholder.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SPAND Studio" />
+<meta property="og:title" content="Construction Documentation — SPAND Studio" />
+<meta property="og:description" content="Progress tracking and contractor marketing from the air — from groundbreaking to ribbon-cutting." />
+<meta property="og:url" content="https://spandstudio.com/services/construction.html" />
+<meta property="og:image" content="https://spandstudio.com/assets/media/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Construction Documentation — SPAND Studio" />
+<meta name="twitter:image" content="https://spandstudio.com/assets/media/og-image.jpg" />
+<style>
+  /* Construction page — cleaner imagery + editorial gallery (scoped to this page) */
+  .svc-detail .media { border: none; box-shadow: 0 22px 55px -30px rgba(60,20,10,.5); }
+  .svc-detail .media.dark { box-shadow: 0 26px 62px -28px rgba(0,0,0,.6); }
+
+  .cons-gallery {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: clamp(148px, 16.5vw, 215px);
+    gap: 14px;
+  }
+  .cons-gallery figure {
+    margin: 0; position: relative; overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--bg-elev-2);
+    box-shadow: 0 22px 55px -32px rgba(60,20,10,.5);
+  }
+  .cons-gallery img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; transition: transform .6s ease;
+  }
+  .cons-gallery figure:hover img { transform: scale(1.05); }
+  .cons-gallery figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+    padding: 34px 15px 13px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600;
+    color: var(--ink-fg);
+    background: linear-gradient(to top, rgba(21,17,13,.85), rgba(21,17,13,0));
+  }
+  .cg-lead  { grid-column: span 7; grid-row: span 2; }
+  .cg-tall  { grid-column: span 5; grid-row: span 2; }
+  .cg-wide  { grid-column: span 5; grid-row: span 1; }
+  .cg-wide2 { grid-column: span 7; grid-row: span 1; }
+  @media (max-width: 760px) {
+    .cons-gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: clamp(140px, 30vw, 185px); }
+    .cg-lead, .cg-tall, .cg-wide, .cg-wide2 { grid-column: span 1; grid-row: span 1; }
+  }
+  @media (max-width: 480px) {
+    .cons-gallery { grid-template-columns: 1fr; grid-auto-rows: auto; }
+    .cons-gallery figure { aspect-ratio: 3 / 2; }
+  }
+</style>
+</head>
+<body class="svc-detail">
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../landing.html">
+      <span class="brand-logo"><img src="../assets/image-placeholder.svg" alt="SPAND Studio" /></span>
+      <span class="brand-stack">
+        <span class="brand-name">SPAND STUDIO</span>
+        <span class="brand-sub">+ Aerial Video &amp; Photography</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="../landing.html">Home</a>
+      <a href="../services.html" class="current">Services</a>
+      <a href="../landing.html#process">Process</a>
+      <a href="../landing.html#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-portal" href="../index.html"><span class="lk"></span>Client Portal</a>
+      <a class="btn primary" href="../quote.html?service=construction">Get a quote</a>
+    </div>
+  </div>
+</header>
+
+<section class="svc-hero">
+  <div class="svc-hero-inner">
+    <div class="crumbs"><a href="../landing.html">Home</a><span class="sep">/</span><a href="../services.html">Services</a><span class="sep">/</span><span class="here">Construction Documentation</span></div>
+    <span class="eyebrow">Photo & 3D · Service 03 of 6</span>
+    <h1>Construction Documentation</h1>
+
+    <div class="svc-body" style="margin-top: clamp(28px,4vw,44px);">
+      <div>
+        <span class="eyebrow">What we capture</span>
+        <ul class="deliv" style="margin-top:18px;">
+        <li>
+          <span class="dnum">01</span>
+          <span><span class="dname">3D scan &amp; orthomosaic</span><span class="ddesc">A measurable top-down map and a rotatable 3D model — check layout against plans and watch earthwork change visit to visit.</span></span>
+        </li>
+        <li>
+          <span class="dnum">02</span>
+          <span><span class="dname">360° photos</span><span class="ddesc">Walkable panoramas from the same fixed points each visit, so anyone can stand in the site and look around remotely.</span></span>
+        </li>
+        <li>
+          <span class="dnum">03</span>
+          <span><span class="dname">Standard photos</span><span class="ddesc">High-resolution stills of milestones, problem areas, and the finished build — ready for records and stakeholders.</span></span>
+        </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="aside-card">
+          <h4>Who it's for</h4>
+          <div class="chips">
+          <span class="who-chip"><span class="dot"></span>General contractors</span>
+          <span class="who-chip"><span class="dot"></span>Developers</span>
+          <span class="who-chip"><span class="dot"></span>Civil & site work</span>
+          <span class="who-chip"><span class="dot"></span>Commercial builders</span>
+          <span class="who-chip"><span class="dot"></span>Project owners</span>
+          </div>
+        </div>
+        <div class="aside-card" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent);">
+          <h4 style="color:var(--accent-ink);opacity:0.75;">Ready to shoot?</h4>
+          <p style="margin:0 0 16px;font-size:14px;line-height:1.5;opacity:0.92;">Tell us about your construction documentation project and we'll send an estimate within one business day.</p>
+          <a class="btn on-ink primary" href="../quote.html?service=construction" style="width:100%;justify-content:center;">Start a quote <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- interactive 360 -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Interactive 360°</span>
+        <h2 style="font-size:clamp(24px,3.2vw,36px);">Stand in the site and look around.</h2>
+      </div>
+      <p class="blurb">Captured from a fixed point so you can compare the same vantage across visits.</p>
+    </div>
+    <div class="media ratio-16-9 dark"><img src="../assets/image-placeholder.svg" alt="Image placeholder" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" /></div>
+  </div>
+</section>
+
+<!-- sample photos -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Sample frames</span>
+        <h2 style="font-size:clamp(24px,3.2vw,36px);">Standard photos from a recent site.</h2>
+      </div>
+    </div>
+    <div class="cons-gallery">
+      <figure class="cg-lead"><img src="../assets/image-placeholder.svg" alt="Aerial photo of a construction site" loading="lazy" /><figcaption>Site overview</figcaption></figure>
+      <figure class="cg-tall"><img src="../assets/image-placeholder.svg" alt="Aerial photo of construction progress" loading="lazy" /><figcaption>Progress · this visit</figcaption></figure>
+      <figure class="cg-wide"><img src="../assets/image-placeholder.svg" alt="Aerial photo of a building site" loading="lazy" /><figcaption>Detail</figcaption></figure>
+      <figure class="cg-wide2"><img src="../assets/image-placeholder.svg" alt="Aerial photo of site detail" loading="lazy" /><figcaption>Wide context</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- how it works : client-prescribed cadence -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="note">
+      <span style="color:var(--accent);flex:0 0 auto;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+      <div><div class="nlabel">On your schedule</div><p>Every capture happens on a basis you prescribe — a single visit, key milestones, or a recurring weekly or monthly cadence. Tell us which deliverables you want and how often, and we'll set up the rhythm around your build.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- prev / next -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="svc-nav">
+      <a class="prev" href="../services/fpv-fly-throughs.html">
+        <div class="dir"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg> Previous service</div>
+        <div class="nm">FPV Fly-Throughs</div>
+      </a>
+      <a class="next" href="../services/property-documentation.html">
+        <div class="dir">Next service <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></div>
+        <div class="nm">Property Documentation</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <span class="eyebrow">Let's make something</span>
+        <h2>Put construction documentation to work for your business.</h2>
+        <p>A quick message is all it takes — we'll reply with a real estimate within one business day.</p>
+      </div>
+      <div class="actions">
+        <a class="btn on-ink primary lg" href="../quote.html?service=construction">Start a quote <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        <a class="btn on-ink lg" href="tel:8102630979">Call 810 · 263 · 0979</a>
+        <a class="btn on-ink lg" href="mailto:hello@spandstudio.com">hello@spandstudio.com</a>
+        <div class="phone">spandstudio.com</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="f-brand">
+      <a class="brand" href="../landing.html">
+        <span class="brand-logo"><img src="../assets/image-placeholder.svg" alt="SPAND Studio" /></span>
+        <span class="brand-stack">
+          <span class="brand-name">SPAND STUDIO</span>
+          <span class="brand-sub">+ Aerial Video &amp; Photography</span>
+        </span>
+      </a>
+      <p class="f-tag">A small aerial media studio serving Washtenaw County and Southeast Michigan.</p>
+      <div class="f-contact">SPANDSTUDIO.COM<br /><a href="mailto:hello@spandstudio.com">HELLO@SPANDSTUDIO.COM</a><br />810 · 263 · 0979<br />WASHTENAW COUNTY, MI</div>
+    </div>
+    <div>
+      <h5>More services</h5>
+      <div class="f-links">
+        <a href="../services/promotional-videos.html">Promotional Videos</a>
+        <a href="../services/property-documentation.html">Property Documentation</a>
+        <a href="../services/fpv-fly-throughs.html">FPV Fly-Throughs</a>
+        <a href="../services.html">All services &rarr;</a>
+      </div>
+    </div>
+    <div>
+      <h5>Studio</h5>
+      <div class="f-links">
+        <a href="../landing.html">Home</a>
+        <a href="../landing.html#process">How it works</a>
+        <a href="../index.html">Client Portal</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../quote.html?service=construction">Get a quote</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <span>&copy; 2026 SPAND Studio &middot; FAA Part 107 Licensed</span>
+    <span>Washtenaw County, Michigan</span>
+  </div>
+</footer>
+
+<!-- 360 viewer -->
+<script src="../assets/vendor/quote-link.js"></script>
+</body>
+</html>

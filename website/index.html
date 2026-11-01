@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SPAND Studio — Client Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="styles.css" />
+<meta name="description" content="SPAND Studio client portal — sign in to view your deliverables and quote." />
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/svg+xml" sizes="32x32" href="assets/image-placeholder.svg" />
+<link rel="icon" type="image/svg+xml" sizes="192x192" href="assets/image-placeholder.svg" />
+<link rel="apple-touch-icon" href="assets/image-placeholder.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SPAND Studio" />
+<meta property="og:title" content="Client Portal — SPAND Studio" />
+<meta property="og:description" content="Sign in to view your deliverables and quote." />
+<meta property="og:image" content="https://spandstudio.com/assets/media/og-image.jpg" />
+</head>
+<body>
+<div id="root"></div>
+
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+
+<!--
+  Firebase modular SDK (v12.14.0) loaded as an ES module from gstatic.
+  We expose only what the rest of the app needs on `window.fb`, and gate
+  React mount on `window.firebaseReady` so the auth state is known before
+  the portal renders. Do NOT add Analytics here without first wiring a
+  cookie-consent UI — analytics fires GA cookies on load.
+-->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+  import {
+    getAuth, setPersistence, browserLocalPersistence,
+    createUserWithEmailAndPassword, signInWithEmailAndPassword,
+    signInWithPopup, GoogleAuthProvider, signOut,
+    sendEmailVerification, sendPasswordResetEmail,
+    onAuthStateChanged, updateProfile, reload,
+  } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+  import {
+    getFirestore, collection, addDoc, serverTimestamp,
+    doc, getDoc, query, where, orderBy, onSnapshot,
+  } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+  import {
+    getStorage, ref as storageRef, getDownloadURL,
+  } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-storage.js";
+  import {
+    getFunctions, httpsCallable,
+  } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-functions.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA_YwSXyFfbNYyu51S2Wc_kxmHiWNIoYyQ",
+    authDomain: "spand-studio.firebaseapp.com",
+    projectId: "spand-studio",
+    storageBucket: "spand-studio.firebasestorage.app",
+    messagingSenderId: "960935312194",
+    appId: "1:960935312194:web:46f619423ba83888a0a6db",
+    measurementId: "G-RCL1NSKH0P",
+  };
+
+  let resolveReady;
+  window.firebaseReady = new Promise((r) => { resolveReady = r; });
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  // Persist sign-in across reloads / tabs on this device only.
+  await setPersistence(auth, browserLocalPersistence);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+  // Cloud Functions live in us-east1 to match the Storage bucket region
+  // (Storage triggers must be in the same region as the bucket they watch).
+  // This must match the region declared on the functions themselves
+  // (see functions/index.js).
+  const functions = getFunctions(app, "us-east1");
+
+  window.fb = {
+    auth, db, storage, functions,
+    createUserWithEmailAndPassword, signInWithEmailAndPassword,
+    signInWithPopup, GoogleAuthProvider, signOut,
+    sendEmailVerification, sendPasswordResetEmail,
+    onAuthStateChanged, updateProfile, reload,
+    collection, addDoc, serverTimestamp,
+    doc, getDoc, query, where, orderBy, onSnapshot,
+    storageRef, getDownloadURL,
+    httpsCallable,
+  };
+  resolveReady(window.fb);
+</script>
+
+<!-- Shared service catalogue (same data the public site uses) — powers the
+     Quote tab's service cards. Plain script, must load before the portal mounts. -->
+<script src="services-data.js"></script>
+
+<script type="text/babel" src="icons.jsx"></script>
+<script type="text/babel" src="auth.jsx"></script>
+<script type="text/babel" src="quote.jsx"></script>
+<script type="text/babel" src="deliverables.jsx"></script>
+<script type="text/babel" src="portal.jsx"></script>
+</body>
+</html>
